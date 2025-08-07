@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Hız Testi Pro</string>
+    <string name="permission_rationale">Uygulama doğru çalışmak için konum ve sensör izinlerine ihtiyaç duyar.</string>
+    <string name="start_test">Testi Başlat</string>
+    <string name="stop_test">Testi Bitir</string>
+    <string name="live_telemetry">Canlı Telemetri</string>
+    <string name="history">Geçmiş</string>
+    <string name="dashboard">Kontrol Paneli</string>
+</resources>
