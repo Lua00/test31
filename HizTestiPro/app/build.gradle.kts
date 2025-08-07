@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
     id("org.jetbrains.kotlin.plugin.serialization")
+    id("androidx.room") version "2.6.1"
 }
 
 android {
@@ -65,6 +66,17 @@ android {
 // Ensure Kotlin & KSP use Java 17
 kotlin {
     jvmToolchain(17)
+}
+
+// Room Gradle Plugin configuration (export schemas)
+room {
+    schemaDirectory("$projectDir/schemas")
+}
+
+// Pass schema location to KSP for Room (redundant with plugin but safe)
+ksp {
+    arg("room.schemaLocation", "$projectDir/schemas")
+    arg("room.generateKotlin", "true")
 }
 
 dependencies {

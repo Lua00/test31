@@ -7,7 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.RoomDatabase
 
-@Database(entities = [TestSessionEntity::class], version = 1)
+@Database(entities = [TestSessionEntity::class], version = 1, exportSchema = true)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun sessionDao(): SessionDao
 }

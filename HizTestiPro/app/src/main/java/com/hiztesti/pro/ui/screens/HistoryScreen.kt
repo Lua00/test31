@@ -18,6 +18,7 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import com.hiztesti.pro.models.SavedSegment
 import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.layout.padding
 
 @Composable
 fun HistoryScreen(navController: NavController, vm: com.hiztesti.pro.viewmodel.HistoryViewModel = viewModel()) {
@@ -40,7 +41,7 @@ private fun HistoryItem(entity: TestSessionEntity) {
         Json.decodeFromString(entity.segmentsJson)
     } catch (e: Exception) { emptyList() }
     Card { 
-        Column(modifier = androidx.compose.ui.Modifier.fillMaxSize().padding(12.dp)) {
+        Column(modifier = Modifier.fillMaxSize().padding(12.dp)) {
             Text(entity.testName)
             Text("Toplam süre: ${"% .3f".format(entity.totalTimeSeconds)} s")
             Text("Toplam mesafe: ${"% .2f".format(entity.totalDistanceMeters)} m")
