@@ -48,12 +48,23 @@ android {
         }
     }
 
+    // Ensure Java tasks use 17
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
     kotlinOptions {
         jvmTarget = "17"
         freeCompilerArgs += listOf(
             "-Xjvm-default=all",
         )
     }
+}
+
+// Ensure Kotlin & KSP use Java 17
+kotlin {
+    jvmToolchain(17)
 }
 
 dependencies {
