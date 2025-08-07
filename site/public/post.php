@@ -24,6 +24,7 @@ if (!$post) {
   <nav>
     <a href="/index.php">Ana Sayfa</a>
     <a href="/blog.php">Blog</a>
+    <a href="/downloads.php">İndirilebilirler</a>
   </nav>
 </header>
 <main class="container">

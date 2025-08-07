@@ -28,6 +28,16 @@ function initSchema(): void {
     created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
   )');
+  $db->exec('CREATE TABLE IF NOT EXISTS downloads (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    description TEXT,
+    stored_filename TEXT NOT NULL,
+    original_filename TEXT NOT NULL,
+    mime_type TEXT,
+    file_size INTEGER,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+  )');
 }
 
 function getAuthenticatedUser(): ?array {
@@ -37,6 +47,10 @@ function getAuthenticatedUser(): ?array {
   $stmt->execute([':id' => $_SESSION['user_id']]);
   $user = $stmt->fetch(PDO::FETCH_ASSOC);
   return $user ?: null;
+}
+
+function isAdmin(array $user): bool {
+  return isset($user['id']) && (int)$user['id'] === 1;
 }
 
 function findUserByUsername(string $username): ?array {
@@ -86,6 +100,34 @@ function getPostById(int $id): ?array {
   $stmt->execute([':id' => $id]);
   $post = $stmt->fetch(PDO::FETCH_ASSOC);
   return $post ?: null;
+}
+
+function createDownload(string $title, ?string $description, string $storedFilename, string $originalFilename, ?string $mimeType, int $fileSize): int {
+  $db = getDb();
+  $stmt = $db->prepare('INSERT INTO downloads (title, description, stored_filename, original_filename, mime_type, file_size) VALUES (:t, :d, :sf, :of, :mt, :sz)');
+  $stmt->execute([
+    ':t' => $title,
+    ':d' => $description,
+    ':sf' => $storedFilename,
+    ':of' => $originalFilename,
+    ':mt' => $mimeType,
+    ':sz' => $fileSize,
+  ]);
+  return (int)$db->lastInsertId();
+}
+
+function getAllDownloads(): array {
+  $db = getDb();
+  $stmt = $db->query('SELECT * FROM downloads ORDER BY created_at DESC');
+  return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function getDownloadById(int $id): ?array {
+  $db = getDb();
+  $stmt = $db->prepare('SELECT * FROM downloads WHERE id = :id');
+  $stmt->execute([':id' => $id]);
+  $dl = $stmt->fetch(PDO::FETCH_ASSOC);
+  return $dl ?: null;
 }
 
 // Ensure schema exists for every request in dev

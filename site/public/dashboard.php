@@ -22,6 +22,7 @@ if (!$user) {
   <nav>
     <a href="/index.php">Ana Sayfa</a>
     <a href="/blog.php">Blog</a>
+    <a href="/downloads.php">İndirilebilirler</a>
     <form class="inline" method="post" action="/logout.php">
       <button type="submit">Çıkış</button>
     </form>

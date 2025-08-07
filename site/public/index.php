@@ -18,6 +18,7 @@ $user = getAuthenticatedUser();
     <nav>
       <a href="/index.php">Ana Sayfa</a>
       <a href="/blog.php">Blog</a>
+      <a href="/downloads.php">İndirilebilirler</a>
       <a href="/store.php">Üyelik Satın Al</a>
       <?php if ($user): ?>
         <a href="/dashboard.php">Panel</a>
