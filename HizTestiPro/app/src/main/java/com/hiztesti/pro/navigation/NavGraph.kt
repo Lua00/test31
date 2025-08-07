@@ -1,8 +1,8 @@
 package com.hiztesti.pro.navigation
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.History
-import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.DirectionsCar
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -15,23 +15,23 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.hiztesti.pro.ui.screens.DashboardScreen
-import com.hiztesti.pro.ui.screens.HistoryScreen
+import com.hiztesti.pro.ui.screens.AddVehicleScreen
 import com.hiztesti.pro.ui.screens.SettingsScreen
-import com.hiztesti.pro.ui.screens.TestScreen
+import com.hiztesti.pro.ui.screens.VehicleDetailScreen
+import com.hiztesti.pro.ui.screens.VehiclesScreen
 import androidx.compose.foundation.layout.padding
 
 sealed class Route(val route: String, val label: String) {
-    data object Dashboard : Route("dashboard", "Ana Sayfa")
-    data object Test : Route("test", "Test")
-    data object History : Route("history", "Geçmiş")
+    data object Vehicles : Route("vehicles", "Araçlar")
+    data object AddVehicle : Route("add_vehicle", "Ekle")
+    data object VehicleDetail : Route("vehicle_detail", "Detay")
     data object Settings : Route("settings", "Ayarlar")
 }
 
 @Composable
 fun AppNav() {
     val navController = rememberNavController()
-    val items = listOf(Route.Dashboard, Route.Test, Route.History, Route.Settings)
+    val items = listOf(Route.Vehicles, Route.AddVehicle, Route.Settings)
     Scaffold(
         bottomBar = {
             NavigationBar {
@@ -42,16 +42,16 @@ fun AppNav() {
                         selected = currentRoute == item.route,
                         onClick = {
                             if (currentRoute != item.route) navController.navigate(item.route) {
-                                popUpTo(Route.Dashboard.route)
+                                popUpTo(Route.Vehicles.route)
                                 launchSingleTop = true
                             }
                         },
                         icon = {
                             when (item) {
-                                Route.Dashboard -> Icon(Icons.Default.Home, contentDescription = null)
-                                Route.History -> Icon(Icons.Default.History, contentDescription = null)
+                                Route.Vehicles -> Icon(Icons.Default.DirectionsCar, contentDescription = null)
+                                Route.AddVehicle -> Icon(Icons.Default.Add, contentDescription = null)
                                 Route.Settings -> Icon(Icons.Default.Settings, contentDescription = null)
-                                else -> Icon(Icons.Default.Home, contentDescription = null)
+                                else -> Icon(Icons.Default.DirectionsCar, contentDescription = null)
                             }
                         },
                         label = { Text(item.label) }
@@ -61,10 +61,10 @@ fun AppNav() {
         }
     ) { padding ->
         androidx.compose.foundation.layout.Box(modifier = androidx.compose.ui.Modifier.padding(padding)) {
-            NavHost(navController = navController, startDestination = Route.Dashboard.route) {
-                composable(Route.Dashboard.route) { DashboardScreen(navController) }
-                composable(Route.Test.route) { TestScreen(navController) }
-                composable(Route.History.route) { HistoryScreen(navController) }
+            NavHost(navController = navController, startDestination = Route.Vehicles.route) {
+                composable(Route.Vehicles.route) { VehiclesScreen(navController) }
+                composable(Route.AddVehicle.route) { AddVehicleScreen(navController) }
+                composable(Route.VehicleDetail.route) { VehicleDetailScreen(navController) }
                 composable(Route.Settings.route) { SettingsScreen(navController) }
             }
         }
