@@ -19,6 +19,7 @@ import com.hiztesti.pro.ui.screens.DashboardScreen
 import com.hiztesti.pro.ui.screens.HistoryScreen
 import com.hiztesti.pro.ui.screens.SettingsScreen
 import com.hiztesti.pro.ui.screens.TestScreen
+import androidx.compose.foundation.layout.padding
 
 sealed class Route(val route: String, val label: String) {
     data object Dashboard : Route("dashboard", "Ana Sayfa")
