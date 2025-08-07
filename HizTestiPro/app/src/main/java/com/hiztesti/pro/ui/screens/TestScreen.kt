@@ -15,18 +15,15 @@ import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.hiztesti.pro.testengine.SpeedSegment
 import com.hiztesti.pro.viewmodel.TelemetryViewModel
 
 @Composable
@@ -59,6 +56,7 @@ fun TestScreen(navController: NavController, vm: TelemetryViewModel = viewModel(
                 Text("Mesafe: ${"% .2f".format(state.distanceMeters)} m")
                 Text("Süre: ${"% .3f".format(state.elapsedSeconds)} s")
                 Text("Aşama: ${state.activeSegmentIndex + 1}")
+                Text("Uydu: ${state.satellitesUsed}/${state.satellitesTotal}")
             }
         }
         Spacer(Modifier.height(16.dp))
