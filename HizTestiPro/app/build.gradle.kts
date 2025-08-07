@@ -73,12 +73,6 @@ room {
     schemaDirectory("$projectDir/schemas")
 }
 
-// Pass schema location to KSP for Room (redundant with plugin but safe)
-ksp {
-    arg("room.schemaLocation", "$projectDir/schemas")
-    arg("room.generateKotlin", "true")
-}
-
 dependencies {
     val composeBom = platform("androidx.compose:compose-bom:2024.06.00")
     implementation(composeBom)
