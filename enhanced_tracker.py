@@ -43,14 +43,14 @@ class EnhancedObjectTracker:
         
         # Performans ayarları
         self.settings = {
-            'red_lower1': [0, 100, 100],
+            'red_lower1': [0, 50, 50],      # Daha geniş kırmızı aralık
             'red_upper1': [10, 255, 255],
-            'red_lower2': [160, 100, 100],
+            'red_lower2': [170, 50, 50],    # Daha geniş kırmızı aralık 2
             'red_upper2': [180, 255, 255],
-            'blue_lower': [100, 100, 100],
+            'blue_lower': [90, 50, 50],     # Daha geniş mavi aralık
             'blue_upper': [130, 255, 255],
-            'min_area': 500,
-            'max_area': 50000,
+            'min_area': 300,                # Daha düşük minimum alan
+            'max_area': 100000,             # Daha yüksek maksimum alan
             'fps_limit': 30,
             'quality': 'high',  # low, medium, high
             'resolution': '720p',  # 480p, 720p, 1080p
