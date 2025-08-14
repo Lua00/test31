@@ -56,6 +56,9 @@ def show_menu():
        - Performans izleme
        - Takip geçmişi
        - Modern arayüz
+       - Kalite ayarları
+       - FPS optimizasyonu
+       - Hedef seçme/takip
     
     4️⃣  Test Scripti
        - Sistem testi
@@ -71,7 +74,7 @@ def run_application(choice):
     apps = {
         '1': 'demo_tracker.py',
         '2': 'object_tracker.py', 
-        '3': 'advanced_tracker.py',
+        '3': 'enhanced_tracker.py',
         '4': 'test_camera.py'
     }
     

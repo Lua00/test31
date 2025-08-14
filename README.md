@@ -4,13 +4,17 @@ Modern ve gelişmiş bir Python uygulaması ile mavi ve kırmızı nesneleri ger
 
 ## ✨ Özellikler
 
-- 🎥 **Gerçek Zamanlı Video İşleme**: IP kamera desteği ile canlı görüntü işleme
+- 🎥 **Gerçek Zamanlı Video İşleme**: IP kamera ve webcam desteği ile canlı görüntü işleme
 - 🎯 **Gelişmiş Nesne Tespiti**: HSV renk uzayında hassas renk tespiti
 - 📊 **Modern UI**: CustomTkinter ile şık ve kullanıcı dostu arayüz
 - ⚙️ **Ayarlanabilir Parametreler**: Renk aralıkları, minimum alan, FPS limiti
 - 📈 **Performans İzleme**: FPS ve işlem süresi takibi
 - 📝 **Takip Geçmişi**: Tespit edilen nesnelerin zaman damgalı kayıtları
 - 💾 **Ayar Kaydetme**: Kullanıcı ayarlarını JSON formatında saklama
+- 🎨 **Kalite Ayarları**: Düşük, orta, yüksek kalite seçenekleri
+- ⚡ **FPS Optimizasyonu**: Performans için ayarlanabilir FPS limitleri
+- 🎯 **Hedef Seçme/Takip**: Mouse ile hedef seçme ve özel takip modu
+- 🔧 **Çözünürlük Ayarları**: 480p, 720p, 1080p çözünürlük seçenekleri
 
 ## 🚀 Kurulum
 
@@ -31,11 +35,18 @@ pip install -r requirements.txt
 
 2. **Uygulamayı çalıştırın:**
 ```bash
-# Basit versiyon
-python object_tracker.py
+# Başlatıcı ile (önerilen)
+python3 run.py
 
-# Gelişmiş versiyon (önerilen)
-python advanced_tracker.py
+# Veya doğrudan:
+# Demo versiyon (webcam ile test)
+python3 demo_tracker.py
+
+# Basit versiyon (IP kamera)
+python3 object_tracker.py
+
+# Gelişmiş versiyon (tüm özellikler)
+python3 enhanced_tracker.py
 ```
 
 ## 🎮 Kullanım
@@ -43,7 +54,7 @@ python advanced_tracker.py
 ### Ana Özellikler
 
 1. **Kamera Bağlantısı**
-   - Kamera URL'sini girin (varsayılan: `http://192.168.1.109:8080/video`)
+   - IP kamera URL'sini girin veya webcam kullanın
    - "Başlat" butonuna tıklayın
 
 2. **Nesne Tespiti**
@@ -51,10 +62,15 @@ python advanced_tracker.py
    - Mavi nesneler "FRIEND" olarak işaretlenir
    - Her nesne için bounding box ve merkez nokta çizilir
 
-3. **Ayarlar**
-   - "Ayarlar" butonuna tıklayarak renk aralıklarını ayarlayın
-   - HSV değerlerini değiştirerek hassasiyeti artırın
-   - Minimum alan ve FPS limitini ayarlayın
+3. **Hedef Seçme ve Takip**
+   - "Takip Modu" butonuna tıklayın
+   - Video üzerinde istediğiniz nesneye tıklayın
+   - Seçilen hedef özel kutu ile vurgulanır
+
+4. **Kalite ve Performans Ayarları**
+   - "Ayarlar" butonuna tıklayarak kalite seviyesini ayarlayın
+   - FPS limitini değiştirerek performansı optimize edin
+   - Çözünürlük seçeneklerini kullanın
 
 ### Ayarlar Açıklaması
 
@@ -74,6 +90,23 @@ python advanced_tracker.py
 **Mavi Nesneler (Friend):**
 - Alt Aralık: H=100, S=100, V=100
 - Üst Aralık: H=130, S=255, V=255
+
+#### Kalite Ayarları
+
+**Düşük Kalite:**
+- FPS: 15
+- Bulanıklaştırma: Yüksek
+- Performans: En hızlı
+
+**Orta Kalite:**
+- FPS: 25
+- Bulanıklaştırma: Orta
+- Performans: Dengeli
+
+**Yüksek Kalite:**
+- FPS: 30
+- Bulanıklaştırma: Yok
+- Performans: En kaliteli
 
 ## 🔧 Teknik Detaylar
 
@@ -95,11 +128,14 @@ python advanced_tracker.py
 ## 📁 Dosya Yapısı
 
 ```
-├── object_tracker.py          # Basit versiyon
-├── advanced_tracker.py        # Gelişmiş versiyon
-├── requirements.txt           # Bağımlılıklar
-├── README.md                 # Bu dosya
-└── tracker_settings.json     # Kaydedilen ayarlar (otomatik oluşur)
+├── run.py                    # Başlatıcı (önerilen)
+├── demo_tracker.py           # Demo versiyon (webcam)
+├── object_tracker.py         # Basit versiyon
+├── enhanced_tracker.py       # Gelişmiş versiyon (tüm özellikler)
+├── test_camera.py           # Test scripti
+├── requirements.txt          # Bağımlılıklar
+├── README.md                # Bu dosya
+└── enhanced_tracker_settings.json  # Kaydedilen ayarlar (otomatik oluşur)
 ```
 
 ## 🐛 Sorun Giderme
